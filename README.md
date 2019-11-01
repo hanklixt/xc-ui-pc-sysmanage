@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+#报错 Node Sass does not yet support your current environment 时 对应此操作
+npm install node-sass -save-dev
+
 # serve with hot reload at localhost:8080
 npm run dev
 
