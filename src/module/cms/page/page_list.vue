@@ -43,14 +43,20 @@
         methods:{
             query:function () {
                 // alert("hello");
-                cmsApi.page_list(this.params.pageSize,this.params.pageSize,this.params).then(res=>{
-                    this.total = res.queryResult.total
-                    this.list = res.queryResult.list
+                cmsApi.page_list(this.params.pageNo,this.params.pageSize,this.params).then(res=>{
+                    console.log(res);
+                    this.total = res.queryResult.total;
+                    this.list = res.queryResult.list;
                 });
             },
-            changePage:function () {
+            changePage:function (page) {
+                this.params.pageNo=page;
                 this.query();
             }
+        },
+        mounted() {
+             //默认查询页面
+            this.query()
         }
 
 
