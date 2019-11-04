@@ -1,6 +1,17 @@
 <template>
     <div>
-      <el-button type="primary" size="small" v-on:click="query">查询</el-button>
+      <el-form :model="params">
+      <el-select v-model="params.siteId" placeholder="请选择站点">
+      <el-option
+      v-for="item in siteList"
+      :key="item.siteId"
+      :label="item.siteName"
+      :value="item.siteId">
+      </el-option>
+      </el-select>
+      页面别名：<el-input v-model="params.pageAliase" style="width: 100px"></el-input>
+      <el-button type="primary" v-on:click="query" size="small">查询</el-button>
+      </el-form>
       <el-table
         :data="list"
         border
@@ -35,8 +46,11 @@
                 total:0,
                 params:{
                     pageSize:10,
-                    pageNo:1
-                }
+                    pageNo:1,
+                    siteId:'',
+                    pageAliase:''
+                },
+                siteList: [],
             }
 
         },
@@ -57,6 +71,16 @@
         mounted() {
              //默认查询页面
             this.query()
+            this.siteList = [
+                {
+                    siteId:'5a751fab6abb5044e0d19ea1',
+                    siteName:'门户主站'
+                },
+                {
+                    siteId:'102',
+                    siteName:'测试站'
+                }
+            ]
         }
 
 

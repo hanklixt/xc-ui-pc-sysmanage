@@ -7,7 +7,8 @@ let xcApiUrl = sysConfig.xcApiUrl;
 
 //定义方法，查询页面
 export const page_list=(page,size,params)=>{
-  return   http.requestQuickGet(apiUrl+"/cms/list/"+page+"/"+size);
+  let stringify = querystring.stringify(params);
+  return   http.requestQuickGet(apiUrl+"/cms/list/"+page+"/"+size+"?"+stringify);
 }
 
 
