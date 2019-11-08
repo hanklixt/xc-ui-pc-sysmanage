@@ -34,8 +34,9 @@
               <el-button size="small" type="text"
               @click="edit(page.row.pageId)">编辑
               </el-button>
+
               <el-button size="small" type="text"
-                         @click="delete(page.row.pageId)">删除
+                         @click="del(page.row.pageId)">删除
               </el-button>
             </template>
           </el-table-column>
@@ -93,22 +94,23 @@
                     }
                 });
             },
-            delete:function (pageId) {
-              cmsApi.page_delete(pageId).then(res=>{
-                  if(res.success){
-                      this.$message({
-                          type: 'success',
-                          message: '删除成功!'
-                      });
-                      //查询页面
-                      this.query()
-                  }else{
-                      this.$message({
-                          type: 'error',
-                          message: '删除失败!'
-                      });
-              }
-            })
+            del:function (pageId) {
+                cmsApi.page_delete(pageId).then(res => {
+                    if (res.success) {
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                        //查询页面
+                        this.query()
+                    } else {
+                        this.$message({
+                            type: 'error',
+                            message: '删除失败!'
+                        });
+                    }
+                })
+            }
         },
         created(){
           this.params.page=Number.parseInt(this.$route.query.page||1), this.params.siteId=this.$route.query.siteId
