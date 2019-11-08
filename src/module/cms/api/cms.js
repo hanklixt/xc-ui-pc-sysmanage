@@ -13,7 +13,18 @@ export const page_list=(page,size,params)=>{
 //新增
 export const page_add=(params=>{
   let stringify = querystring.stringify(params);
-  return http.requestPost(apiUrl+"/cms/list/page",params)
+  return http.requestPost(apiUrl+"/cms/add",params)
+})
+//查询
+export const  page_get=(id=>{
+   return http.requestQuickGet(apiUrl+"/cms/get/"+id);
+})
+//
+export  const  page_edit=((id,params)=>{
+  return http.requestPut(apiUrl+"/cms/edit/"+id,params);
+})
+export const  page_delete=(id=>{
+  return http.requestDelete(apiUrl+"/cms/del/"+id);
 })
 
 

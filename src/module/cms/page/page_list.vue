@@ -29,6 +29,17 @@
           <el-table-column prop="pageWebPath" label="访问路径" width="250"></el-table-column>
           <el-table-column prop="pagePhysicalPath" label="物理路径" width="250"></el-table-column>
           <el-table-column prop="pageCreateTime" label="创建时间" width="180" ></el-table-column>
+          <el-table-column prop="pageCreateTime" label="操作" width="80" >
+            <template slot-scope="page">
+              <el-button size="small" type="text"
+              @click="edit(page.row.pageId)">编辑
+              </el-button>
+              <el-button size="small" type="text"
+                         @click="delete(page.row.pageId)">删除
+              </el-button>
+            </template>
+          </el-table-column>
+
       </el-table>
       <el-pagination
         background
@@ -72,7 +83,32 @@
             changePage:function (page) {
                 this.params.pageNo=page;
                 this.query();
-            }
+            },
+            edit:function (pageId) {
+                this.$router.push({
+                    path:'/cms/page/edit/'+pageId,
+                    query:{
+                        page:this.params.page,
+                        siteId:this.params.siteId
+                    }
+                });
+            },
+            delete:function (pageId) {
+              cmsApi.page_delete(pageId).then(res=>{
+                  if(res.success){
+                      this.$message({
+                          type: 'success',
+                          message: '删除成功!'
+                      });
+                      //查询页面
+                      this.query()
+                  }else{
+                      this.$message({
+                          type: 'error',
+                          message: '删除失败!'
+                      });
+              }
+            })
         },
         created(){
           this.params.page=Number.parseInt(this.$route.query.page||1), this.params.siteId=this.$route.query.siteId
