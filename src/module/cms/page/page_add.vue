@@ -95,12 +95,20 @@
                 //执行校验
                 this.$refs.pageForm.validate((valid) => {
                     if (valid) {
-                        cmsApi.page_add(this.pageForm).then(res=>{
-                            if (res.success){
-                                this.$message.success('操作成功');
-                            }else {
-                                this.$message.error('操作失败')
-                            }
+                        this.$confirm('确认提交吗?', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(res=>{
+                            cmsApi.page_add(this.pageForm).then(res=>{
+                                if (res.success){
+                                    this.$message.success('操作成功');
+                                    this.$refs['pageForm'].resetFields();
+
+                                }else {
+                                    this.$message.error('操作失败')
+                                }
+                            })
                         })
                     } else {
                         alert('校验失败');
