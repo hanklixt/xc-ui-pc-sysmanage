@@ -10,6 +10,11 @@ export const page_list=(page,size,params)=>{
   let stringify = querystring.stringify(params);
   return   http.requestQuickGet(apiUrl+"/cms/list/"+page+"/"+size+"?"+stringify);
 }
+//新增
+export const page_add=(params=>{
+  let stringify = querystring.stringify(params);
+  return http.requestPost(apiUrl+"/cms/list/page",params)
+})
 
 
 
