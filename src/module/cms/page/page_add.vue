@@ -31,7 +31,7 @@
            <el-form-item label="物理路径" prop="pagePhysicalPath">
              <el-input v-model="pageForm.pagePhysicalPath" auto-complete="off" ></el-input>
            </el-form-item>
-           <el-form-item label="物理路径" prop="pagePhysicalPath">
+           <el-form-item label="dataUrl" prop="pagePhysicalPath">
              <el-input v-model="pageForm.dataUrl" auto-complete="off" ></el-input>
            </el-form-item>
            <el-form-item label="类型">

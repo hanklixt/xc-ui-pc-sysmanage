@@ -28,8 +28,10 @@
           <el-table-column prop="pageType" label="页面类型" width="150"></el-table-column>
           <el-table-column prop="pageWebPath" label="访问路径" width="250"></el-table-column>
           <el-table-column prop="pagePhysicalPath" label="物理路径" width="250"></el-table-column>
+        <el-table-column prop="dataUrl" label="dataUrl" width="250"></el-table-column>
           <el-table-column prop="pageCreateTime" label="创建时间" width="180" ></el-table-column>
           <el-table-column prop="pageCreateTime" label="操作" width="80" >
+
             <template slot-scope="page">
               <el-button size="small" type="text"
               @click="edit(page.row.pageId)">编辑
