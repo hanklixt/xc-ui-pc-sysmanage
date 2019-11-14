@@ -26,6 +26,9 @@ export  const  page_edit=((id,params)=>{
 export const  page_delete=(id=>{
   return http.requestDelete(apiUrl+"/cms/del/"+id);
 })
+export const page_post=(id=>{
+  return http.requestPost(apiUrl+"/cms/post/"+id)
+})
 
 
 
